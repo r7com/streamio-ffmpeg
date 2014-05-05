@@ -241,7 +241,7 @@ module FFMPEG
         end
 
         it "should know the colorspace" do
-          @movie.colorspace.should == "yuv420p"
+          @movie.colorspace.should == "yuv420p(tv, bt709)"
         end
 
         it "should know the resolution" do
