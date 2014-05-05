@@ -16,4 +16,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency("rake", "~> 10.1")
 
   s.files        = Dir.glob("lib/**/*") + %w(README.md LICENSE CHANGELOG)
+
+  s.required_ruby_version = '>= 1.9.3'
 end
