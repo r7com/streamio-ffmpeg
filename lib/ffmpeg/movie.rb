@@ -39,9 +39,9 @@ module FFMPEG
       output[/Video:\ (.*)/]
       @video_stream = $1
 
-      output[/Audio:\ (.*)/]
+      output[/Audio:\ (.*) (|(default))/]
       @audio_stream = $1
-
+      
       if @video_stream
         commas_except_in_parenthesis = /(?:\([^()]*\)|[^,])+/ # regexp to handle "yuv420p(tv, bt709)" colorspace etc from http://goo.gl/6oi645
         @video_codec, @colorspace, resolution, video_bitrate = video_stream.scan(commas_except_in_parenthesis).map(&:strip)
