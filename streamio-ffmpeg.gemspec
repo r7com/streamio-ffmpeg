@@ -5,7 +5,7 @@ $:.unshift lib unless $:.include?(lib)
 require "ffmpeg/version"
 
 Gem::Specification.new do |s|
-  s.name        = "streamio_ffmpeg"
+  s.name        = "r7streamio_ffmpeg"
   s.version     = FFMPEG::VERSION
   s.authors     = ["David Backeus", "Rodrigo Martins"]
   s.email       = ["david@streamio.com", "rrmartinsj@gmail.com"]
