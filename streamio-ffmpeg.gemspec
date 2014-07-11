@@ -7,10 +7,10 @@ require "ffmpeg/version"
 Gem::Specification.new do |s|
   s.name        = "r7streamio_ffmpeg"
   s.version     = FFMPEG::VERSION
-  s.authors     = ["David Backeus", "Rodrigo Martins"]
-  s.email       = ["david@streamio.com", "rrmartinsj@gmail.com"]
+  s.authors     = ["Rodrigo Martins"]
+  s.email       = ["rodrigo@rrmartins.com"]
   s.homepage    = "http://github.com/r7com/streamio-ffmpeg"
-  s.summary     = "Wraps ffmpeg to read metadata and transcodes videos."
+  s.summary     = "Wraps ffmpeg to read metadata and transcodes videos. Copy with changes on github.com/streamio/streamio-ffmpeg"
 
   s.add_development_dependency("rspec", "~> 2.14")
   s.add_development_dependency("rake", "~> 10.1")
