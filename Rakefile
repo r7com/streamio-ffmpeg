@@ -13,7 +13,7 @@ desc "Push a new version to Rubygems"
 task :publish do
   require 'ffmpeg/version'
 
-  sh "gem build r7streamio_ffmpeg.gemspec"
+  sh "gem build streamio-ffmpeg.gemspec"
   sh "gem push r7streamio_ffmpeg-#{FFMPEG::VERSION}.gem"
   sh "git tag v#{FFMPEG::VERSION}"
   sh "git push origin v#{FFMPEG::VERSION}"
