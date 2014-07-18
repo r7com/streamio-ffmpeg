@@ -1,8 +1,10 @@
+require 'logger'
 require 'bundler'
 Bundler.require
 
 require 'fileutils'
 require 'pry'
+require './lib/streamio-ffmpeg'
 
 FFMPEG.logger = Logger.new(nil)
 
