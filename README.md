@@ -48,6 +48,7 @@ movie.video_stream # "h264, yuv420p, 640x480 [PAR 1:1 DAR 4:3], 371 kb/s, 16.75 
 movie.video_codec # "h264"
 movie.colorspace # "yuv420p"
 movie.resolution # "640x480"
+movie.sizep # 480 (value of size on progressive)
 movie.width # 640 (width of the movie in pixels)
 movie.height # 480 (height of the movie in pixels)
 movie.frame_rate # 16.72 (frames per second)
