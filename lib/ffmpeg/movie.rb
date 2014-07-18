@@ -5,7 +5,7 @@ module FFMPEG
     attr_reader :path, :duration, :time, :bitrate, :rotation, :creation_time
     attr_reader :video_stream, :video_codec, :video_bitrate, :colorspace, :resolution, :sar, :dar
     attr_reader :audio_stream, :audio_codec, :audio_bitrate, :audio_sample_rate
-    attr_reader :container
+    attr_reader :container, :sizep
 
     def initialize(path)
       raise Errno::ENOENT, "the file '#{path}' does not exist" unless File.exists?(path)
@@ -46,9 +46,10 @@ module FFMPEG
         commas_except_in_parenthesis = /(?:\([^()]*\)|[^,])+/ # regexp to handle "yuv420p(tv, bt709)" colorspace etc from http://goo.gl/6oi645
         @video_codec, @colorspace, resolution, video_bitrate = @video_stream.scan(commas_except_in_parenthesis).map(&:strip)
         @video_bitrate = video_bitrate =~ %r(\A(\d+) kb/s\Z) ? $1.to_i : nil
-        @resolution = resolution.split(" ").first rescue nil # get rid of [PAR 1:1 DAR 16:9]
-        @sar = $1 if @video_stream[/SAR (\d+:\d+)/]
-        @dar = $1 if @video_stream[/DAR (\d+:\d+)/]
+        @resolution    = resolution.split(" ").first rescue nil # get rid of [PAR 1:1 DAR 16:9]
+        @sizep         = @resolution.split("x").last.to_i rescue nil
+        @sar           = $1 if @video_stream[/SAR (\d+:\d+)/]
+        @dar           = $1 if @video_stream[/DAR (\d+:\d+)/]
       end
 
       if @audio_stream

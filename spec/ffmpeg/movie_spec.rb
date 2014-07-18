@@ -212,6 +212,10 @@ module FFMPEG
           @movie = Movie.new("#{fixture_path}/movies/awesome movie.mov")
         end
 
+        it "should size progressive be to 480" do
+          @movie.sizep.should == 480
+        end
+
         it "should remember the movie path" do
           @movie.path.should == "#{fixture_path}/movies/awesome movie.mov"
         end
