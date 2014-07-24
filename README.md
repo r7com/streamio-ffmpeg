@@ -45,7 +45,8 @@ movie.bitrate # 481 (bitrate in kb/s)
 movie.size # 455546 (filesize in bytes)
 
 movie.video_stream # "h264, yuv420p, 640x480 [PAR 1:1 DAR 4:3], 371 kb/s, 16.75 fps, 15 tbr, 600 tbn, 1200 tbc" (raw video stream info)
-movie.video_codec # "h264"
+movie.video_codec # "h264 (Main) (avc1 / 0x31637661)"
+movie.video_codec_short # "h264"
 movie.colorspace # "yuv420p"
 movie.resolution # "640x480"
 movie.sizep # 480 (value of size on progressive)
