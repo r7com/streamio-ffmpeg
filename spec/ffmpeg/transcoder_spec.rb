@@ -167,6 +167,15 @@ module FFMPEG
           expect { transcoder.run }.to raise_error(FFMPEG::Error, /no output file created/)
         end
 
+        it "should return content in @errors when given an invalid movie" do
+          FFMPEG.logger.should_receive(:error)
+          movie = Movie.new(__FILE__)
+          transcoder = Transcoder.new(movie, "#{tmp_path}/fail.flv")
+          expect { transcoder.run }.to raise_error(FFMPEG::Error, /no output file created/)
+          expect(transcoder.errors[1]).to eq "no output file created"
+          expect(transcoder.errors[0].include?("failed")).to eq true
+        end
+
         it "should encode to the specified duration if given" do
           encoded = Transcoder.new(movie, "#{tmp_path}/durationalized.mp4", duration: 2).run
 

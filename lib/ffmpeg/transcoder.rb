@@ -31,6 +31,10 @@ module FFMPEG
       apply_transcoder_options
     end
 
+    def errors
+      @errors
+    end
+
     def run(&block)
       transcode_movie(&block)
       if @transcoder_options[:validate]
@@ -82,9 +86,12 @@ module FFMPEG
           end
 
         rescue Timeout::Error => e
-          FFMPEG.logger.error "Process hung...\n@command\n#{@command}\nOutput\n#{@output}\n"
+          msg = "Process hung...\n@command\n#{@command}\nOutput\n#{@output}\n"
+          @errors << msg
+          FFMPEG.logger.error msg
           raise Error, "Process hung. Full output: #{@output}"
         end
+        @errors << @output unless /(error|invalid|fail)/i.match(@output).nil?
       end
     end
 
@@ -94,7 +101,9 @@ module FFMPEG
         FFMPEG.logger.info "Transcoding of #{@movie.path} to #{@output_file} succeeded\n"
       else
         errors = "Errors: #{@errors.join(", ")}. "
-        FFMPEG.logger.error "Failed encoding...\n#{@command}\n\n#{@output}\n#{errors}\n"
+        msg = "Failed encoding...\n#{@command}\n\n#{@output}\n#{errors}\n"
+        @errors << msg
+        FFMPEG.logger.error msg
         raise Error, "Failed encoding.#{errors}Full output: #{@output}"
       end
     end
